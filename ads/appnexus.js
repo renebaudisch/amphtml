@@ -26,6 +26,14 @@ const APPNEXUS_AST_URL = 'https://acdn.adnxs.com/ast/ast.js';
 export function appnexus(global, data) {
   const args = [];
   args.push('size=' + data.width + 'x' + data.height);
+  if (data.json) {
+    let pageOpts = JSON.parse(data.json);
+    for (let opt in pageOpts) {
+      if (pageOpts.hasOwnProperty(opt)) {
+        args.push(opt + '=' + pageOpts[opt]);
+      }
+    }
+  }
   if (data.tagid) {
     validateData(data, ['tagid']);
     args.push('id=' + encodeURIComponent(data.tagid));
