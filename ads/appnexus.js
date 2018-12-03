@@ -28,10 +28,8 @@ export function appnexus(global, data) {
   args.push('size=' + data.width + 'x' + data.height);
   if (data.json) {
     let pageOpts = JSON.parse(data.json);
-    for (let opt in pageOpts) {
-      if (pageOpts.hasOwnProperty(opt)) {
-        args.push(opt + '=' + pageOpts[opt]);
-      }
+    if (pageOpts.hasOwnProperty('disablePsa')) {
+      args.push('disablePsa=' + pageOpts.disablePsa);
     }
   }
   if (data.tagid) {
